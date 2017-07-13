@@ -7,12 +7,18 @@
         <module>dubbo-starter</module>
         <module>starter-bom</module>
         <module>starter-parent</module>
+        <module>redis-starter</module>
+        <module>mongo-starter</module>
+        <module>dubbo-mysql-redis-mongo</module>
+        <module>web-starter</module>
+        <module>mybatis-starter</module>
+        <module>mqstarter</module>
     </modules>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.5.RELEASE</version>
+        <version>1.5.4.RELEASE</version>
     </parent>
 
     <groupId>com.leibangzhu</groupId>

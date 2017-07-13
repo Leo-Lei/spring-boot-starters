@@ -12,6 +12,11 @@
     <artifactId>starter-parent</artifactId>
     <packaging>pom</packaging>
 
+    <properties>
+        <dubbo.version>2.5.3</dubbo.version>
+        <springboot.version>1.5.4.RELEASE</springboot.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
