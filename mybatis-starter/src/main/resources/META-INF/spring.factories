@@ -1,3 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.leibangzhu.starters.mybatis.config.MybatisAutoConfiguration,\
-com.leibangzhu.starters.mybatis.config.MybatisMapperScannerConfiguration
+com.leibangzhu.starters.mybatis.config.MybatisAutoConfiguration

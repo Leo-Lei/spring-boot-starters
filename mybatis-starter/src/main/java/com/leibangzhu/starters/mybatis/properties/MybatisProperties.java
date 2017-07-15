@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.mybatis")
 public class MybatisProperties {
 
-    private String mapperScanBasePackage;
+    private String mapperScanBasePackage = "";
 
 
     public String getMapperScanBasePackage() {
