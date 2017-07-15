@@ -1,3 +1,7 @@
 .idea
 target
 *.iml
+.gradle
+*.class
+*.jar
+*.jar.original
