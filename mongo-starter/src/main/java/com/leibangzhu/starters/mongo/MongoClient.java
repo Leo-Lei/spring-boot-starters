@@ -10,27 +10,27 @@ import java.util.List;
 public class MongoClient implements IMongoClient {
 
     @Override
-    public long deleteOne(String db, String collection, Document document) {
+    public long deleteOne(String collection, Document document) {
         return getCollection(db,collection).deleteOne(document).getDeletedCount();
     }
 
     @Override
-    public long deleteMany(String db, String collection, Document document) {
+    public long deleteMany(String collection, Document document) {
         return getCollection(db,collection).deleteMany(document).getDeletedCount();
     }
 
     @Override
-    public void insertOne(String db, String collection, Document document) {
+    public void insertOne(String collection, Document document) {
         getCollection(db,collection).insertOne(document);
     }
 
     @Override
-    public void insertMany(String db, String collection, List<Document> documents) {
+    public void insertMany(String collection, List<Document> documents) {
         getCollection(db,collection).insertMany(documents);
     }
 
     @Override
-    public List<Document> find(String db, String collection, Document query) {
+    public List<Document> find(String collection, Document query) {
         MongoCursor<Document> cursor = getCollection(db,collection).find(query).iterator();
         List<Document> documents = new ArrayList<>();
         try {
@@ -44,7 +44,7 @@ public class MongoClient implements IMongoClient {
     }
 
     @Override
-    public List<Document> find(String db, String collection, Document query, int limit) {
+    public List<Document> find(String collection, Document query, int limit) {
         MongoCursor<Document> cursor = getCollection(db,collection).find(query).limit(limit).iterator();
         List<Document> documents = new ArrayList<>();
         while (cursor.hasNext()) {
@@ -54,12 +54,12 @@ public class MongoClient implements IMongoClient {
     }
 
     @Override
-    public long updateOne(String db, String collection, Document query, Document update) {
+    public long updateOne(String collection, Document query, Document update) {
         return getCollection(db,collection).updateOne(query, update).getModifiedCount();
     }
 
     @Override
-    public long count(String db, String collection, Document query) {
+    public long count(String collection, Document query) {
         return getCollection(db, collection).count(query);
     }
 
@@ -68,8 +68,9 @@ public class MongoClient implements IMongoClient {
     }
 
     private com.mongodb.MongoClient mongo;
+    private String db;
 
-    public MongoClient(com.mongodb.MongoClient mongo){
-        this.mongo = mongo;
+    public MongoClient(com.mongodb.MongoClient mongo,String db){
+        this.mongo = mongo; this.db = db;
     }
 }

@@ -42,6 +42,6 @@ public class MongoAutoConfiguration {
 
     @Bean
     public IMongoClient mongoClient(com.mongodb.MongoClient mongo){
-        return new MongoClient(mongo);
+        return new MongoClient(mongo,mongoProperties.getDb());
     }
 }
