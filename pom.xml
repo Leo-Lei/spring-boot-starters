@@ -12,7 +12,6 @@
         <module>dubbo-mysql-redis-mongo</module>
         <module>web-starter</module>
         <module>mybatis-starter</module>
-        <module>mqstarter</module>
         <module>mq-starter</module>
     </modules>
 
