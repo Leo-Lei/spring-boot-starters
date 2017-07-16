@@ -13,6 +13,7 @@
         <module>web-starter</module>
         <module>mybatis-starter</module>
         <module>mq-starter</module>
+        <module>disconf-starter</module>
     </modules>
 
     <parent>
