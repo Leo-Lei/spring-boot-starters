@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 
 
 @Configuration
-//@MapperScan(basePackages = {"com.pniutong.qibei.heartbeat.repository.dao"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class MybatisAutoConfiguration {
 
     @Bean(name = "dataSource")
