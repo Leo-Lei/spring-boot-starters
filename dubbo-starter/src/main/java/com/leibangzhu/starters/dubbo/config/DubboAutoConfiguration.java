@@ -72,12 +72,17 @@ public class DubboAutoConfiguration {
     }
 
     @Bean
-    public RegistryConfig registryConfig() {
+    public RegistryConfig registryConfig(@Value("${data.dir:}") String dataDir) {
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setProtocol(dubboRegistry.getProtocol());
         registryConfig.setAddress(dubboRegistry.getAddress());
         registryConfig.setRegister(dubboRegistry.isRegister());
         registryConfig.setSubscribe(dubboRegistry.isSubscribe());
+        if ((null != dataDir ) && (!dataDir.isEmpty())){
+            registryConfig.setFile(dataDir+"/" + ".dubbo");
+        }
+        System.out.println(registryConfig.getFile());
+
         System.out.println("[DubboAutoConfiguration] : " + dubboRegistry);
         return registryConfig;
     }
