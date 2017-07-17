@@ -2,24 +2,14 @@ package com.leibangzhu.starters.disconf.config;
 
 import com.baidu.disconf.client.DisconfMgrBean;
 import com.baidu.disconf.client.DisconfMgrBeanSecond;
-import com.leibangzhu.starters.disconf.properties.DisconfProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
-@EnableConfigurationProperties({DisconfProperties.class})
 public class DisconfAutoConfiguration {
-
-    @Autowired
-    private DisconfProperties disconfProperties;
-
 
     @Bean(name = "disconfMgrBean",destroyMethod = "destroy")
     public DisconfMgrBean disconfMgrBean(){
@@ -34,18 +24,28 @@ public class DisconfAutoConfiguration {
         return new DisconfMgrBeanSecond();
     }
 
-    private String getScanPackage(){
+    private String getScanPackage() {
         String scanPackage = "";
         Properties properties = new Properties();
-        InputStream inputStream = DisconfAutoConfiguration.class.getResourceAsStream("/application.properties");
+        InputStream inputStream = null;
 
         try {
+            inputStream = DisconfAutoConfiguration.class.getResourceAsStream("/application.properties");
             properties.load(inputStream);
-            scanPackage  = properties.getProperty("spring.disconf.scanPackage").trim();
-        } catch (IOException e) {
+            scanPackage  = properties.getProperty(disconfScanPackage).trim();
+        } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            if (inputStream != null){
+                try {
+                    inputStream.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
         }
         return scanPackage;
     }
 
+    private final String disconfScanPackage = "spring.disconf.scanPackage";
 }
