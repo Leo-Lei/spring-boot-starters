@@ -1,6 +1,8 @@
 package com.leibangzhu.starters.redis;
 
 public interface IRedisClient {
-    String get(String key);
-    String set(String key, String value);
+
+    Object get(String key);
+    <T> T get(String key, Class<T> clazz);
+    void set(String key, Object value);
 }

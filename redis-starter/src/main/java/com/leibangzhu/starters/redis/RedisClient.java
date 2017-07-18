@@ -1,26 +1,27 @@
 package com.leibangzhu.starters.redis;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
+import org.springframework.data.redis.core.RedisTemplate;
 
 public class RedisClient implements IRedisClient {
-    @Override
-    public String get(String key) {
-        try(Jedis jedis = pool.getResource() ){
-            return jedis.get(key);
-        }
+
+    private RedisTemplate<String,Object> redis;
+
+    public RedisClient(RedisTemplate<String,Object> redis){
+        this.redis = redis;
     }
 
     @Override
-    public String set(String key, String value) {
-        try(Jedis jedis = pool.getResource() ){
-            return jedis.set(key,value);
-        }
+    public Object get(String key) {
+        return redis.opsForValue().get(key);
     }
 
-    private JedisPool pool;
+    @Override
+    public <T> T get(String key, Class<T> clazz) {
+        return (T)get(key);
+    }
 
-    public RedisClient(JedisPool pool){
-        this.pool = pool;
+    @Override
+    public void set(String key, Object value) {
+        redis.opsForValue().set(key,value);
     }
 }

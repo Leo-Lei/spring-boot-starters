@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '1.5.4.RELEASE'
+    id 'java'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/snapshot" }
+    maven { url "http://repo.spring.io/milestone" }
+}
+
+dependencies {
+    compile("com.leibangzhu:redis-starter:1.0-SNAPSHOT")
+    //compile("org.springframework.boot:spring-boot-starter-data-redis")
+    //compile("org.springframework.boot:spring-boot-starter-web")
+}
+
+sourceCompatibility = 1.8
+
+allprojects {
+    configurations.all {
+        // check for updates every build
+        resolutionStrategy.cacheChangingModulesFor(0, 'seconds')
+    }
+}
+
+springBoot {
+    executable = true
+}
+
+dependencyManagement {
+    resolutionStrategy {
+        cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
+group 'com.leibangzhu'
+version '1.0-SNAPSHOT'
