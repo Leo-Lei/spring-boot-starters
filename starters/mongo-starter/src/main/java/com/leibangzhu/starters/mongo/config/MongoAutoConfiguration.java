@@ -4,6 +4,7 @@ import com.leibangzhu.starters.mongo.IMongoClient;
 import com.leibangzhu.starters.mongo.MongoClient;
 import com.leibangzhu.starters.mongo.properties.MongoProperties;
 import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoClientURI;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +23,8 @@ public class MongoAutoConfiguration {
 
     @Bean
     public com.mongodb.MongoClient mongo(){
-        String host     = mongoProperties.getHost();
-        int    port     = mongoProperties.getPort();
-        String db       = mongoProperties.getDb();
-        String user     = mongoProperties.getUser();
-        String password = mongoProperties.getPassword();
-        // 设置用户名，密码
-        MongoCredential credential = MongoCredential.createCredential(user,db,password.toCharArray());
-        // 在这里添加额外的连接参数
-        MongoClientOptions options = MongoClientOptions.builder().build();
-        // 创建MongoClient
-        com.mongodb.MongoClient mongoClient = new com.mongodb.MongoClient(
-                new ServerAddress(host,port),
-                Arrays.asList(credential),
-                options
-        );
-        return mongoClient;
+        MongoClientURI uri = new MongoClientURI(mongoProperties.getUri());
+        return new com.mongodb.MongoClient(uri);
     }
 
     @Bean

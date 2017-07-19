@@ -1,5 +1,0 @@
-spring.mongo.host=localhost
-spring.mongo.port=27017
-spring.mongo.db=myDatabase
-spring.mongo.user=admin
-spring.mongo.password=Passw0rd
