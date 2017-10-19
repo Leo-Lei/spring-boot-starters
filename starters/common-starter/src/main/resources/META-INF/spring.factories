@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.leibangzhu.starters.common.EventAggregatorAutoConfiguration,\
+com.leibangzhu.starters.common.AutoConfiguration,\
+com.leibangzhu.starters.common.HttpClientAutoConfiguration

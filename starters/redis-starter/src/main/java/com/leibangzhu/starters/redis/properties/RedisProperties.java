@@ -5,18 +5,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.redis")
 public class RedisProperties {
 
-    private int dataBase;
-    private String host;
-    private int port;
+    private int dataBase = 0 ;
+    private String host ;
+    private int port = 6379;
     private String password;
     private int timeout;
     private final Pool pool = new Pool();
 
     public static class Pool{
-        private int maxIdle;
-        private int minIdle;
-        private int maxActive;
-        private int maxWait;
+        private int maxIdle = 8;
+        private int minIdle = 0;
+        private int maxActive = 20;
+        private int maxWait = 30000;
 
         public int getMaxIdle() {
             return maxIdle;

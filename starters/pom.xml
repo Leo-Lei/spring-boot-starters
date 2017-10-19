@@ -9,22 +9,26 @@
         <module>starter-parent</module>
         <module>redis-starter</module>
         <module>mongo-starter</module>
-        <module>dubbo-mysql-redis-mongo</module>
         <module>web-starter</module>
         <module>mybatis-starter</module>
         <module>mq-starter</module>
         <module>disconf-starter</module>
+        <module>common-starter</module>
+        <module>http-starter</module>
+        <module>sms-starter</module>
+        <module>extension-starter</module>
+        <module>scheduler-starter</module>
+        <module>qibei-bom</module>
+        <module>test-starter</module>
+        <module>base-starter</module>
+        <module>spring-boot-admin-starter</module>
+        <module>apollo-starter</module>
+        <module>influxdb-starter</module>
     </modules>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.4.RELEASE</version>
-    </parent>
 
     <groupId>com.leibangzhu</groupId>
     <artifactId>starters</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -32,20 +36,12 @@
         <repository>
             <id>releases</id>
             <name>Nexus Release Repository</name>
-            <url>http://127.0.0.1:8087/nexus/content/repositories/releases/</url>
+            <url>http://192.168.1.1:8087/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
             <name>Nexus Snapshot Repository</name>
-            <url>http://127.0.0.1:8087/nexus/content/repositories/snapshots/</url>
+            <url>http://192.168.1.1:8087/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-    </dependencies>
-
 </project>

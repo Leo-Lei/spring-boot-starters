@@ -1,6 +1,5 @@
 package com.leibangzhu.sample.redis;
 
-
 import java.io.Serializable;
 
 public class User implements Serializable {

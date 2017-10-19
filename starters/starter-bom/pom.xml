@@ -5,7 +5,7 @@
     <parent>
         <artifactId>starters</artifactId>
         <groupId>com.leibangzhu</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -13,10 +13,34 @@
     <packaging>pom</packaging>
 
     <properties>
-        <dubbo.version>2.5.3</dubbo.version>
+        <dubbo.version>2.5.5</dubbo.version>
+        <powermock.version>1.7.1</powermock.version>
+        <mybatis.version>3.3.1</mybatis.version>
+        <mybatis-spring.version>1.2.4</mybatis-spring.version>
+        <mysql.version>5.1.44</mysql.version>
+        <druid.version>1.0.27</druid.version>
+        <jedis.version>2.9.0</jedis.version>
+        <disconf.version>2.6.36.1.RELEASE</disconf.version>
+        <dozer.version>5.5.1</dozer.version>
+        <aliyun-java-sdk-core.version>3.2.4</aliyun-java-sdk-core.version>
+        <aliyun-java-sdk-iot.version>2.2.0</aliyun-java-sdk-iot.version>
+        <quartz.version>2.3.0</quartz.version>
+        <aliyun-sdk-mns.version>1.1.8.4</aliyun-sdk-mns.version>
+        <mockito-core.version>1.10.19</mockito-core.version>
+        <spring-boot-admin.version>1.5.3</spring-boot-admin.version>
+        <curator-framework.version>2.12.0</curator-framework.version>
+        <ons-client.version>1.2.7.Final</ons-client.version>
+        <rocketmq-client.version>3.5.9</rocketmq-client.version>
+        <commons-lang3.version>3.4</commons-lang3.version>
+        <httpclient.version>4.5.3</httpclient.version>
+        <commons-collections4.version>4.1</commons-collections4.version>
+        <fastjson.version>1.2.12</fastjson.version>
+        <apollo-client.version>0.9.0-SNAPSHOT</apollo-client.version>
     </properties>
 
     <!--这里统一管理在spring-boot中没有提供的依赖，包括版本以及传递依赖的exclude-->
+    <!--如果想覆盖spring-boot已提供的依赖，请在qibei-bom中编辑-->
+    <!--绝大多数场景下，如果spring-boot已提供了，请直接使用spring-boot提供的版本-->
     <!--所有的starter中都不要再指定版本了，这里统一管理各个组件的版本-->
     <!--请所有的维护人员都遵循这个准则-->
 
@@ -33,52 +57,208 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>com.101tec</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>0.2</version>
-            </dependency>
 
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
-                <version>3.3.1</version>
+                <version>${mybatis.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
-                <version>1.2.4</version>
+                <version>${mybatis-spring.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.38</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>3.7.5</version>
+                <version>${mysql.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
-                <version>1.0.27</version>
+                <version>${druid.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
-                <version>2.9.0</version>
+                <version>${jedis.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.baidu.disconf</groupId>
                 <artifactId>disconf-client</artifactId>
-                <version>2.6.36</version>
+                <version>${disconf.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.httpcomponents</groupId>
+                        <artifactId>httpclient</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-codec</groupId>
+                        <artifactId>commons-codec</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections4.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>${dozer.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>commons-beanutils</groupId>
+                        <artifactId>commons-beanutils</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baidu</groupId>
+                <artifactId>LBS_CoordTrans</artifactId>
+                <version>1.0.0.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-iot</artifactId>
+                <version>${aliyun-java-sdk-iot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz-jobs</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun.mns</groupId>
+                <artifactId>aliyun-sdk-mns</artifactId>
+                <version>${aliyun-sdk-mns.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.httpcomponents</groupId>
+                        <artifactId>httpasyncclient</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mockito</groupId>
+                        <artifactId>mockito-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+
+            <!--<dependency>-->
+            <!--<groupId>com.netflix.curator</groupId>-->
+            <!--<artifactId>curator-framework</artifactId>-->
+            <!--<version>${curator-framework.version}</version>-->
+            <!--</dependency>-->
+
+            <dependency>
+                <groupId>com.aliyun.openservices</groupId>
+                <artifactId>ons-client</artifactId>
+                <version>${ons-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${curator-framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ctrip.framework.apollo</groupId>
+                <artifactId>apollo-client</artifactId>
+                <version>${apollo-client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.influxdb</groupId>
+                <artifactId>influxdb-java</artifactId>
+                <version>2.7</version>
             </dependency>
 
         </dependencies>

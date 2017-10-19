@@ -1,8 +1,12 @@
 package com.leibangzhu.starters.mq;
 
+import java.io.UnsupportedEncodingException;
 import java.text.MessageFormat;
 
 public class Message {
+
+    private static final String DEFAULT_ENCODING = "UTF-8";
+
     private String id;
     private String topic;
     private String tag;
@@ -44,5 +48,23 @@ public class Message {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public byte[] getBodyBytes() {
+
+        if (null != body) {
+
+            try {
+
+                return body.getBytes(DEFAULT_ENCODING);
+            } catch (UnsupportedEncodingException e) {
+
+                //Do nothing.
+                return null;
+            }
+        }else{
+
+            return null;
+        }
     }
 }

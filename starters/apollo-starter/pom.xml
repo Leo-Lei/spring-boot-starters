@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>starter-parent</artifactId>
+        <groupId>com.leibangzhu</groupId>
+        <version>1.1.0-SNAPSHOT</version>
+        <relativePath>../starter-parent/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>apollo-starter</artifactId>
+
+    <dependencies>
+        <!-- Apollo并没有在Maven仓库中提供Client,因为按照Apollo目前的设计，Client中会包含所有环节的metadata的配置 -->
+        <!-- 需要在${Apollo}/scripts/build.sh中配置自己各个环境的相关url，然后上传到自己的Nexus私服中-->
+        <!-- 所以该client包含了所有环境的配置信息，一旦这些配置有改动，需要重新构建和上传Client的JAR到Nexus仓库-->
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.leibangzhu</groupId>
+            <artifactId>base-starter</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+</project>

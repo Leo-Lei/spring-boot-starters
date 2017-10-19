@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.leibangzhu.starters.http.HttpBrokerAutoConfiguration,\
+com.leibangzhu.starters.sms.SmsAutoConfiguration

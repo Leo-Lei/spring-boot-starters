@@ -18,8 +18,6 @@ public class MQ {
     }
 
     public static class ONS {
-        // to be added...
-
         public static OnsProducerBuilder producer(){
             return OnsProducerBuilder.builder();
         }
@@ -27,6 +25,5 @@ public class MQ {
         public static OnsConsumerBuilder consumer(){
             return OnsConsumerBuilder.builder();
         }
-
     }
 }

@@ -28,7 +28,16 @@ public class DubboProtocol {
         this.accessLog = accessLog;
     }
 
+    public String getSerialization() {
+        return serialization;
+    }
+
+    public void setSerialization(String serialization) {
+        this.serialization = serialization;
+    }
+
     private String name = "dubbo";
-    private int port = 20880;
+    private int port = -1;
     private boolean accessLog = true;
+    private String serialization = "hessian2";
 }

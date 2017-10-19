@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    compile("com.leibangzhu:disconf-starter:1.0-SNAPSHOT")
+    compile("com.leibangzhutech:disconf-starter:1.0.2-SNAPSHOT")
 }
 
 sourceCompatibility = 1.8
@@ -33,5 +33,5 @@ dependencyManagement {
     }
 }
 
-group 'com.leibangzhu'
-version '1.0-SNAPSHOT'
+group 'com.leibangzhutech'
+version '1.0.2-SNAPSHOT'

@@ -53,6 +53,26 @@ public class MongoClient implements IMongoClient {
         return documents;
     }
 
+    public List<Document> find( String collection, Document query, Document sorts, int pageSize, int pageNum) {
+        MongoCursor<Document> cursor;
+        if (null == query){
+            cursor = getCollection(db,collection).find().sort(sorts).skip((pageNum - 1) * pageSize).limit(pageSize).iterator();
+        } else {
+            cursor = getCollection(db,collection).find(query).sort(sorts).skip((pageNum - 1) * pageSize).limit(pageSize).iterator();
+        }
+
+        List<Document> documents = new ArrayList<>();
+        try {
+            while (cursor.hasNext()) {
+                documents.add(cursor.next());
+            }
+        }finally {
+            cursor.close();
+        }
+
+        return documents;
+    }
+
     @Override
     public long updateOne(String collection, Document query, Document update) {
         return getCollection(db,collection).updateOne(query, update).getModifiedCount();
@@ -73,4 +93,5 @@ public class MongoClient implements IMongoClient {
     public MongoClient(com.mongodb.MongoClient mongo,String db){
         this.mongo = mongo; this.db = db;
     }
+
 }

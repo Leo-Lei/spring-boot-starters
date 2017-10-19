@@ -1,16 +1,24 @@
 package com.leibangzhu.starters.redis.config;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leibangzhu.starters.redis.IRedisClient;
 import com.leibangzhu.starters.redis.RedisClient;
 import com.leibangzhu.starters.redis.properties.RedisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
@@ -39,18 +47,32 @@ public class RedisAutoConfiguration {
     }
 
     @Bean(name = "myRedisTemplate")
-    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
-        RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
+    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory) {
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+
+        RedisTemplate<String,Object> template = new RedisTemplate<>();
         template.setConnectionFactory(factory);
-//		template.setKeySerializer(new StringRedisSerializer());
-//		template.setValueSerializer(new JdkSerializationRedisSerializer());
-//		template.setValueSerializer(new RedisObjectSerializer());
-//		template.afterPropertiesSet();
+        template.setKeySerializer(new StringRedisSerializer());
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.setHashKeySerializer(jackson2JsonRedisSerializer);
+        template.setHashValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
         return template;
     }
 
     @Bean
-    public IRedisClient redisClient(RedisTemplate<String,Object> redisTemplate){
+    public CacheManager cacheManager(@Qualifier("myRedisTemplate") RedisTemplate<String,Object> redisTemplate){
+        RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate);
+        redisCacheManager.setUsePrefix(true);
+        return redisCacheManager;
+    }
+
+    @Bean
+    public IRedisClient redisClient(@Qualifier("myRedisTemplate") RedisTemplate<String,Object> redisTemplate){
         return new RedisClient(redisTemplate);
     }
 

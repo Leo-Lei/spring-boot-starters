@@ -21,6 +21,7 @@ public class UserRepository {
 
     @Cacheable(value = "something",key = "#name" )
     public User getByName(String name){
+        // 测试@Cache注解
         System.out.println("enter getByName method to get an user...");
         return new User("john",18);
     }

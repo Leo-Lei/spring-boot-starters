@@ -1,18 +1,9 @@
 package com.leibangzhu.starters.mq.rocketmq;
 
 import com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer;
-import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
-import com.alibaba.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
-import com.alibaba.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import com.alibaba.rocketmq.client.exception.MQClientException;
-import com.alibaba.rocketmq.common.message.MessageExt;
 import com.leibangzhu.starters.mq.IMsgConsumer;
-import com.leibangzhu.starters.mq.IMsgHandler;
-import com.leibangzhu.starters.mq.Message;
-import com.leibangzhu.starters.mq.MessageBuilder;
 
-import java.awt.image.ImageConsumer;
-import java.util.List;
 import java.util.Map;
 
 public class RocketMqConsumer implements IMsgConsumer{

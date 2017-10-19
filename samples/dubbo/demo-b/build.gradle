@@ -11,8 +11,8 @@ repositories {
 }
 
 dependencies {
-    compile("com.leibangzhu:demo-a-api:1.0-SNAPSHOT")
-    compile("com.leibangzhu:dubbo-starter:1.0-SNAPSHOT")
+    compile("com.leibangzhu:demo-a-api:1.0.2-SNAPSHOT")
+    compile("com.leibangzhu:dubbo-starter:1.0.2-SNAPSHOT")
 }
 
 sourceCompatibility = 1.8
@@ -35,4 +35,4 @@ dependencyManagement {
 }
 
 group 'com.leibangzhu'
-version '1.0-SNAPSHOT'
+version '1.0.2-SNAPSHOT'

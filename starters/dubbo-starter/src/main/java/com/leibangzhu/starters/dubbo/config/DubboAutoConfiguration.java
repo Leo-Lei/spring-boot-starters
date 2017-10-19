@@ -4,6 +4,7 @@ package com.leibangzhu.starters.dubbo.config;
 import com.alibaba.dubbo.config.*;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
 import com.alibaba.dubbo.rpc.Exporter;
+import com.leibangzhu.starters.common.util.StringUtil;
 import com.leibangzhu.starters.dubbo.properties.DubboRegistry;
 import com.leibangzhu.starters.dubbo.properties.DubboApplication;
 import com.leibangzhu.starters.dubbo.properties.DubboProtocol;
@@ -14,8 +15,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
+
+import javax.naming.ConfigurationException;
 
 @Configuration
+@ImportResource(locations={"classpath*:dubbo-provider.xml"})
 @ConditionalOnClass(Exporter.class)
 @EnableConfigurationProperties({DubboApplication.class, DubboProtocol.class, DubboRegistry.class, DubboProvider.class})
 public class DubboAutoConfiguration {
@@ -49,11 +54,18 @@ public class DubboAutoConfiguration {
     }
 
     @Bean
-    public ProtocolConfig protocolConfig(){
+    public ProtocolConfig protocolConfig() throws ConfigurationException {
         ProtocolConfig protocolConfig = new ProtocolConfig();
         protocolConfig.setName(dubboProtocol.getName());
+
+        if(-1 == dubboProtocol.getPort()){
+
+            throw new ConfigurationException("dubbo.protocol.port is required in properties file.");
+        }
+
         protocolConfig.setPort(dubboProtocol.getPort());
         protocolConfig.setAccesslog(String.valueOf(dubboProtocol.isAccessLog()));
+        protocolConfig.setSerialization(dubboProtocol.getSerialization());
         System.out.println("[DubboAutoConfiguration] : " + dubboProtocol);
         return protocolConfig;
     }
@@ -73,12 +85,15 @@ public class DubboAutoConfiguration {
 
     @Bean
     public RegistryConfig registryConfig(@Value("${data.dir:}") String dataDir) {
+
         RegistryConfig registryConfig = new RegistryConfig();
         registryConfig.setProtocol(dubboRegistry.getProtocol());
         registryConfig.setAddress(dubboRegistry.getAddress());
         registryConfig.setRegister(dubboRegistry.isRegister());
         registryConfig.setSubscribe(dubboRegistry.isSubscribe());
-        if ((null != dataDir ) && (!dataDir.isEmpty())){
+        registryConfig.setClient("curator");
+
+        if (StringUtil.isNotBlank(dataDir)){
             registryConfig.setFile(dataDir+"/" + ".dubbo");
         }
         System.out.println(registryConfig.getFile());

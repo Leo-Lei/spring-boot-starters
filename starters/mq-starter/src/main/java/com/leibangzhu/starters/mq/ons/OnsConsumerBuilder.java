@@ -2,8 +2,6 @@ package com.leibangzhu.starters.mq.ons;
 
 import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.leibangzhu.starters.mq.IMsgHandler;
-import com.leibangzhu.starters.mq.rocketmq.RocketMqConsumer;
-import com.leibangzhu.starters.mq.rocketmq.RocketMqConsumerBuilder;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
