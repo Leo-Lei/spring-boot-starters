@@ -143,7 +143,14 @@ public class HttpClient implements IHttpClient{
         try {
             //URL中的特殊字符转义
             URL u = new URL(url);
-            URI uri = new URI(u.getProtocol(), u.getHost(), u.getPath(), u.getQuery(), null);
+//            URI uri = new URI(u.getProtocol(), u.getHost(), u.getPath(), u.getQuery(), null);
+            URI uri = new URIBuilder()
+                    .setScheme(u.getProtocol())
+                    .setHost(u.getHost())
+                    .setPath(u.getPath())
+                    .setPort(u.getPort())
+                    .build();
+
             get = new HttpGet(uri);
             HttpResponse response = httpclient.execute(get);
             HttpEntity entity = response.getEntity();

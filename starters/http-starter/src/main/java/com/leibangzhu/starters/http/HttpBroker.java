@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.http;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -52,7 +52,7 @@ import java.util.Map;
 @Component
 public class HttpBroker implements IHttpBroker, InitializingBean, DisposableBean {
 
-    private static final Logger logger = QibeiLogger.create(HttpBroker.class);
+    private static final Logger logger = LeibangzhuLogger.create(HttpBroker.class);
     private static final String DEFAULT_TEXT_ENCODING = "UTF-8";
 
     @Autowired(required = false)

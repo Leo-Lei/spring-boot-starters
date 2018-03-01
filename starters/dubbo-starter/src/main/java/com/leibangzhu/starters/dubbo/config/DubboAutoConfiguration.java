@@ -1,14 +1,17 @@
 package com.leibangzhu.starters.dubbo.config;
 
 
-import com.alibaba.dubbo.config.*;
+import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ProtocolConfig;
+import com.alibaba.dubbo.config.ProviderConfig;
+import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
 import com.alibaba.dubbo.rpc.Exporter;
 import com.leibangzhu.starters.common.util.StringUtil;
-import com.leibangzhu.starters.dubbo.properties.DubboRegistry;
 import com.leibangzhu.starters.dubbo.properties.DubboApplication;
 import com.leibangzhu.starters.dubbo.properties.DubboProtocol;
 import com.leibangzhu.starters.dubbo.properties.DubboProvider;
+import com.leibangzhu.starters.dubbo.properties.DubboRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -20,7 +23,7 @@ import org.springframework.context.annotation.ImportResource;
 import javax.naming.ConfigurationException;
 
 @Configuration
-@ImportResource(locations={"classpath*:dubbo-provider.xml"})
+@ImportResource(locations={"classpath*:dubbo-provider.xml","classpath*:dubbo-consumer.xml"})
 @ConditionalOnClass(Exporter.class)
 @EnableConfigurationProperties({DubboApplication.class, DubboProtocol.class, DubboRegistry.class, DubboProvider.class})
 public class DubboAutoConfiguration {

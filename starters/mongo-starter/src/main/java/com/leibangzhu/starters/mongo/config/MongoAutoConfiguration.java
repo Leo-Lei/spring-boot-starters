@@ -1,8 +1,8 @@
 package com.leibangzhu.starters.mongo.config;
 
+import com.leibangzhu.starters.mongo.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.leibangzhu.starters.mongo.IMongoClient;
-import com.leibangzhu.starters.mongo.MongoClient;
 import com.leibangzhu.starters.mongo.properties.MongoProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

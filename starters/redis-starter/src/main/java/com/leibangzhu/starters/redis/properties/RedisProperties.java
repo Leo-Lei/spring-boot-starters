@@ -2,6 +2,9 @@ package com.leibangzhu.starters.redis.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @ConfigurationProperties(prefix = "spring.redis")
 public class RedisProperties {
 
@@ -11,6 +14,7 @@ public class RedisProperties {
     private String password;
     private int timeout;
     private final Pool pool = new Pool();
+    private final Cluster cluster = new Cluster();
 
     public static class Pool{
         private int maxIdle = 8;
@@ -48,6 +52,18 @@ public class RedisProperties {
 
         public void setMaxWait(int maxWait) {
             this.maxWait = maxWait;
+        }
+    }
+
+    public static class Cluster{
+        private List<String> nodes = new ArrayList<>();
+
+        public List<String> getNodes() {
+            return nodes;
+        }
+
+        public void setNodes(List<String> nodes) {
+            this.nodes = nodes;
         }
     }
 
@@ -95,4 +111,7 @@ public class RedisProperties {
         return pool;
     }
 
+    public Cluster getCluster() {
+        return cluster;
+    }
 }

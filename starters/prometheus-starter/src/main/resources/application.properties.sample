@@ -1,0 +1,4 @@
+server.port=8080
+
+endpoints.prometheus.path      = /prometheus
+endpoints.prometheus.sensitive = false

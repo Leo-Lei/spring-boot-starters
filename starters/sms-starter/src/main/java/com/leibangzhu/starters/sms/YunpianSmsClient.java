@@ -3,7 +3,7 @@ package com.leibangzhu.starters.sms;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.slf4j.Logger;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class YunpianSmsClient extends BaseSmsClient {
 
-    private static final Logger logger = QibeiLogger.create(YunpianSmsClient.class);
+    private static final Logger logger = LeibangzhuLogger.create(YunpianSmsClient.class);
 
     private static final String URI_SEND_SMS = "https://sms.yunpian.com/v2/sms/single_send.json";
     private static final String URI_SEND_SMS_BATCH = "https://sms.yunpian.com/v2/sms/batch_send.json";

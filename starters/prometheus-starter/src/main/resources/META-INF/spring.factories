@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.leibangzhu.starters.prometheus.PrometheusAutoConfiguration,\
+com.leibangzhu.starters.prometheus.AutoConfiguration

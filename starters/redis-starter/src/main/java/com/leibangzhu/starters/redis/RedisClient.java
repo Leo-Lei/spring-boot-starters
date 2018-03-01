@@ -1,11 +1,6 @@
 package com.leibangzhu.starters.redis;
 
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
 import java.util.Collection;
 import java.util.Set;
@@ -34,6 +29,11 @@ public class RedisClient implements IRedisClient {
         redis.opsForValue().set(key,value);
     }
 
+    @Override
+    public void set(String key, Object value, int time, TimeUnit unit) {
+        redis.opsForValue().set(key,value);
+        redis.expire(key,time,unit);
+    }
 
     public void sadd(String key, Object value){
         redis.opsForSet().add(key,value);

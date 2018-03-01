@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.extension.event.mock;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import com.leibangzhu.starters.mq.IMsgHandler;
 import com.leibangzhu.starters.mq.exception.MQException;
 import com.leibangzhu.starters.mq.ons.IOnsConsumer;
@@ -11,7 +11,7 @@ import org.slf4j.Logger;
  */
 public class MockMessageConsumer implements IOnsConsumer {
 
-    private static final Logger logger = QibeiLogger.create(MockMessageConsumer.class);
+    private static final Logger logger = LeibangzhuLogger.create(MockMessageConsumer.class);
 
     public void start() throws MQException {
 

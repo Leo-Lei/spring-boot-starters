@@ -79,6 +79,11 @@ public class MongoClient implements IMongoClient {
     }
 
     @Override
+    public long updateMany(String collection, Document query, Document update) {
+        return getCollection(db,collection).updateMany(query, update).getModifiedCount();
+    }
+
+    @Override
     public long count(String collection, Document query) {
         return getCollection(db, collection).count(query);
     }

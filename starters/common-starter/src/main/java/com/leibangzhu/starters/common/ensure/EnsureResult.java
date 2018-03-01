@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.common.ensure;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.slf4j.Logger;
 
 import java.lang.reflect.Constructor;
@@ -11,7 +11,7 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class EnsureResult {
 
-    private static final Logger logger = QibeiLogger.create(EnsureResult.class);
+    private static final Logger logger = LeibangzhuLogger.create(EnsureResult.class);
 
     private static final EnsureResult successEnsureResult = new EnsureResult(true);
     private static final EnsureResult failEnsureResult = new EnsureResult(false);

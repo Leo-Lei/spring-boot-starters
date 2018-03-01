@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.http;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.config.ConnectionConfig;
 import org.apache.http.conn.routing.HttpRoute;
@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public final class HttpBrokerConfiguration implements Cloneable {
 
-    private static final Logger logger = QibeiLogger.create(HttpBrokerConfiguration.class);
+    private static final Logger logger = LeibangzhuLogger.create(HttpBrokerConfiguration.class);
 
     public static final HttpBrokerConfiguration DEFAULT = new Builder().build();
 

@@ -14,6 +14,7 @@
         <module>mq-starter</module>
         <module>disconf-starter</module>
         <module>common-starter</module>
+        <module>business-common-starter</module>
         <module>http-starter</module>
         <module>sms-starter</module>
         <module>extension-starter</module>
@@ -24,11 +25,18 @@
         <module>spring-boot-admin-starter</module>
         <module>apollo-starter</module>
         <module>influxdb-starter</module>
+        <module>trace-starter</module>
+        <module>prometheus-starter</module>
+        <module>cache-starter</module>
+        <module>pentaho-starter</module>
+        <module>etcd-starter</module>
+        <module>message-starter</module>
+        <module>auth-starter</module>
     </modules>
 
     <groupId>com.leibangzhu</groupId>
     <artifactId>starters</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -36,12 +44,12 @@
         <repository>
             <id>releases</id>
             <name>Nexus Release Repository</name>
-            <url>http://192.168.1.1:8087/nexus/content/repositories/releases/</url>
+            <url>http://100.100.100.100:8087/nexus/content/repositories/releases/</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
             <name>Nexus Snapshot Repository</name>
-            <url>http://192.168.1.1:8087/nexus/content/repositories/snapshots/</url>
+            <url>http://100.100.100.100:8087/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>

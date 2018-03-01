@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.sms;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class ChuanglanSmsClient extends BaseSmsClient {
 
-    private static final Logger logger = QibeiLogger.create(ChuanglanSmsClient.class);
+    private static final Logger logger = LeibangzhuLogger.create(ChuanglanSmsClient.class);
 
     private final String server;
     private final String account;

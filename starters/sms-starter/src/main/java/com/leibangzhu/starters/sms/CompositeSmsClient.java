@@ -3,7 +3,7 @@ package com.leibangzhu.starters.sms;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.Map;
 @Component
 public class CompositeSmsClient implements InitializingBean, ICompositeSmsClient {
 
-    private static final Logger logger = QibeiLogger.create(CompositeSmsClient.class);
+    private static final Logger logger = LeibangzhuLogger.create(CompositeSmsClient.class);
 
     @Autowired
     private ISmsClientSystemConfigurationProvider systemConfigProvider;
@@ -104,8 +104,6 @@ public class CompositeSmsClient implements InitializingBean, ICompositeSmsClient
                 logger.warn(String.format("Fail to send message by #'%s' - client '%s'", index, client.getClass().getName()));
             }
         }
-
-        logger.error(String.format("Fail to send message by all '%s' available Clients", availableClients.size()));
 
         return successNumbers;
     }

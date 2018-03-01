@@ -3,8 +3,8 @@ package com.leibangzhu.starters.redis.config;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.leibangzhu.starters.redis.IRedisClient;
 import com.leibangzhu.starters.redis.RedisClient;
+import com.leibangzhu.starters.redis.IRedisClient;
 import com.leibangzhu.starters.redis.properties.RedisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,6 +14,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisClusterConfiguration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -31,18 +32,30 @@ public class RedisAutoConfiguration {
 
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
-        JedisConnectionFactory factory = new JedisConnectionFactory();
-        factory.setDatabase(redisProperties.getDataBase());
-        factory.setHostName(redisProperties.getHost());
-        factory.setPort(redisProperties.getPort());
-        factory.setPassword(redisProperties.getPassword());
         JedisPoolConfig poolConfig = new JedisPoolConfig();
         poolConfig.setMaxIdle(redisProperties.getPool().getMaxIdle());
         poolConfig.setMinIdle(redisProperties.getPool().getMinIdle());
         poolConfig.setMaxWaitMillis(redisProperties.getPool().getMaxWait());
         poolConfig.setMaxTotal(redisProperties.getPool().getMaxActive());
-        factory.setPoolConfig(poolConfig);
+
+        JedisConnectionFactory factory;
+        // cluster mode
+        if (redisProperties.getCluster().getNodes().size() > 0){
+            RedisClusterConfiguration clusterConfiguration = new RedisClusterConfiguration(redisProperties.getCluster().getNodes());
+            factory = new JedisConnectionFactory(clusterConfiguration,poolConfig);
+            factory.setPassword(redisProperties.getPassword());
+            factory.setTimeout(redisProperties.getTimeout());
+            return factory;
+        }
+
+        // non-cluster mode
+        factory = new JedisConnectionFactory();
+        factory.setDatabase(redisProperties.getDataBase());
+        factory.setHostName(redisProperties.getHost());
+        factory.setPort(redisProperties.getPort());
+        factory.setPassword(redisProperties.getPassword());
         factory.setTimeout(redisProperties.getTimeout());
+        factory.setPoolConfig(poolConfig);
         return factory;
     }
 

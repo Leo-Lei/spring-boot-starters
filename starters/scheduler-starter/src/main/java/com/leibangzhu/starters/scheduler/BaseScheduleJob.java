@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.scheduler;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.quartz.CronTrigger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -20,7 +20,7 @@ import java.text.ParseException;
 
 public abstract class BaseScheduleJob implements Job {
 
-    private final static Logger logger = QibeiLogger.create(BaseScheduleJob.class);
+    private final static Logger logger = LeibangzhuLogger.create(BaseScheduleJob.class);
     private final String jobName;
     private final String triggerName;
 

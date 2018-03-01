@@ -7,10 +7,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.methods.RequestBuilder;
+import org.apache.http.client.methods.*;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
@@ -48,7 +45,7 @@ import java.util.Map;
 
 public class HttpClientUtil {
 
-    private static final Logger logger = QibeiLogger.create(HttpClientUtil.class);
+    private static final Logger logger = LeibangzhuLogger.create(HttpClientUtil.class);
 
     private static final int MAX_CONNECTION = 50;
     private static final int DEFAULT_MAX_CONNECTION = 30;
@@ -229,6 +226,17 @@ public class HttpClientUtil {
         return execute(reqMethod);
     }
 
+    public static String post(String url,Map<String,String> params,Map<String,String> headers) throws Exception{
+        HttpUriRequest reqMethod = RequestBuilder.post()
+                .setUri(url)
+                .addParameters(params(params))
+                .setConfig(buildRequestConfig(null, null, null))
+                .build();
+
+        appendHeaders(headers,reqMethod);
+        return execute(reqMethod);
+    }
+
     public static String post(String url, Map<String, String> paramMap, Object body, Integer socketTimeout, Integer connectTimeout, Integer connectionRequestTimeout)
             throws IOException {
         HttpUriRequest reqMethod = RequestBuilder.post()
@@ -320,4 +328,15 @@ public class HttpClientUtil {
             return true;
         }
     }
+
+    private static void appendHeaders(Map<String, String> headers, HttpUriRequest request) {
+        if(null != headers){
+
+            for(Map.Entry<String, String> pair : headers.entrySet()){
+
+                request.addHeader(pair.getKey(), pair.getValue().toString());
+            }
+        }
+    }
+
 }

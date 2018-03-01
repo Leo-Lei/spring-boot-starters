@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.leibangzhu.starters.message.etcd.EtcdProducerConfiguration,\
+com.leibangzhu.starters.message.etcd.EtcdConsumerConfiguration

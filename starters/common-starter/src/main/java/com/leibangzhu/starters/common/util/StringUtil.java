@@ -60,4 +60,16 @@ public class StringUtil {
         return str == null ? null : str.trim();
     }
 
+
+    public static boolean equals(final String cs1, final String cs2) {
+        if (cs1 == cs2) {
+            return true;
+        }
+        if (cs1 == null || cs2 == null) {
+            return false;
+        }
+
+        return cs1.equals(cs2);
+    }
+
 }

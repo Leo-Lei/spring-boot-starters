@@ -1,0 +1,8 @@
+# producer
+message.etcd.producer.endpoints=http://127.0.0.1:2379
+
+# consumer
+message.etcd.consumer.endpoints=http://127.0.0.1:2379
+message.etcd.consumer.topic=myTopic
+message.etcd.consumer.tags=tagA,tagB
+

@@ -1,14 +1,14 @@
 package com.leibangzhu.starters.extension.event;
 
 import com.aliyun.openservices.shade.com.alibaba.rocketmq.client.exception.MQClientException;
+import com.leibangzhu.starters.extension.event.mock.MockMessageConsumer;
 import com.leibangzhu.starters.common.eventaggregator.ForceRetryException;
 import com.leibangzhu.starters.common.eventaggregator.IEvent;
 import com.leibangzhu.starters.common.eventaggregator.LocalEventAggregator;
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import com.leibangzhu.starters.extension.event.data.EventField;
 import com.leibangzhu.starters.extension.event.data.EventMessage;
 import com.leibangzhu.starters.extension.event.exception.EventAggregatorException;
-import com.leibangzhu.starters.extension.event.mock.MockMessageConsumer;
 import com.leibangzhu.starters.extension.event.mock.MockMessageProducer;
 import com.leibangzhu.starters.mq.IMsgHandler;
 import com.leibangzhu.starters.mq.Message;
@@ -30,7 +30,7 @@ import java.net.UnknownHostException;
 @Component
 public class GlobalEventAggregator extends LocalEventAggregator implements IGlobalEventAggregator, IMsgHandler, InitializingBean {
 
-    private static final Logger logger = QibeiLogger.create(GlobalEventAggregator.class);
+    private static final Logger logger = LeibangzhuLogger.create(GlobalEventAggregator.class);
 
     private static final String EVENT_TAG_FORMAT = "Event_%s";
     public static final String EVENT_TAG_SEPARATOR = "||";

@@ -22,5 +22,7 @@ public interface IMongoClient {
 
     long updateOne(String collection, Document query, Document update);
 
+    long updateMany(String collection, Document query, Document update);
+
     long count(String collection, Document query);
 }

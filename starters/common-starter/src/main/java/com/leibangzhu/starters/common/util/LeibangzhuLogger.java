@@ -12,30 +12,30 @@ import org.slf4j.spi.LocationAwareLogger;
  * Date: 2017/07/25
  * Time: 19:38
  */
-public final class QibeiLogger implements Logger {
+public final class LeibangzhuLogger implements Logger {
 
-    private static final String FQCN = QibeiLogger.class.getName();
+    private static final String FQCN = LeibangzhuLogger.class.getName();
 
 
     public static Logger create(Class<?> logClass) {
 
-        return new QibeiLogger(LoggerFactory.getLogger(logClass));
+        return new LeibangzhuLogger(LoggerFactory.getLogger(logClass));
     }
 
     public static Logger create(Class<?> logClass, int keepOnsiteLevel) {
 
-        return new QibeiLogger(LoggerFactory.getLogger(logClass), keepOnsiteLevel);
+        return new LeibangzhuLogger(LoggerFactory.getLogger(logClass), keepOnsiteLevel);
     }
 
     private final LocationAwareLogger logger;
     private int keepOnsiteLevel = 1;
 
-    private QibeiLogger(Logger logger) {
+    private LeibangzhuLogger(Logger logger) {
 
         this(logger, 1);
     }
 
-    private QibeiLogger(Logger logger, int keepOnsiteLevel) {
+    private LeibangzhuLogger(Logger logger, int keepOnsiteLevel) {
 
         this.logger = (LocationAwareLogger) logger;
         this.keepOnsiteLevel = keepOnsiteLevel;

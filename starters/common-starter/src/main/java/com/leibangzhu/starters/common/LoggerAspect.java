@@ -1,7 +1,6 @@
 package com.leibangzhu.starters.common;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.lang3.ArrayUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
+import java.text.MessageFormat;
 
 @Component
 @Aspect
@@ -25,7 +25,7 @@ public class LoggerAspect {
     }
 
     @Pointcut(" !@annotation(com.leibangzhu.starters.common.annotation.IgnoreLoggable)")
-    public void notIgnoreLog(){
+    public void notIgnoreLog() {
 
     }
 
@@ -34,28 +34,32 @@ public class LoggerAspect {
         Object result = null;
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
+        StringBuilder log = new StringBuilder();
         try {
             Object[] objects = joinPoint.getArgs();
-            //String context = null;
-            //JSONObject.toJSONString(objects);
-            if (ArrayUtils.isNotEmpty(objects)) {
-                logger.info("方法:[{}], 参数列表：[{}]", method.getName(), JSONObject.toJSONString(objects));
-            }else{
-                logger.info("方法:[{}], 无参数列表", method.getName());
-            }
-        }catch (Exception e){
-            logger.error(e.getMessage());
+            log.append(MessageFormat.format("方法:{0}.{1},参数列表:{2},",
+                    method.getDeclaringClass().getCanonicalName(),
+                    method.getName(),
+                    JSONObject.toJSONString(objects)));
+        } catch (Exception e) {
+            log.append(MessageFormat.format("调用错误,{0}", e.getMessage()));
+            logger.error(log.toString());
         }
 
-        result = joinPoint.proceed();
+        try {
+            result = joinPoint.proceed();
+        } catch (Exception e){
+            log.append(MessageFormat.format("调用错误,{0}", e.getMessage()));
+            logger.error(log.toString(),e);
+        }
 
-        try{
-            if (null != result) {
-                String json = JSONObject.toJSONString(result);
-                logger.info("方法:[{}], 返回值:[{}]", method.getName(), json);
-            }
+        try {
+            String json = JSONObject.toJSONString(result);
+            log.append(MessageFormat.format("返回值:{0}", json));
+            logger.info(log.toString());
         } catch (Throwable throwable) {
-            logger.error(throwable.getMessage());
+            log.append(MessageFormat.format("调用错误,{0}", throwable.getMessage()));
+            logger.error(log.toString());
         }
 
         return result;

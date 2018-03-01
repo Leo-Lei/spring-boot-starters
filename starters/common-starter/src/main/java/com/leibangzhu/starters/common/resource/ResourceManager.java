@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.common.resource;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
@@ -18,7 +18,7 @@ public class ResourceManager {
 
     private static ResourceBundle resourceBundle = null;
 
-    private static final Logger logger = QibeiLogger.create(ResourceManager.class);
+    private static final Logger logger = LeibangzhuLogger.create(ResourceManager.class);
 
     private int code;
     private String responseErrorMessage;

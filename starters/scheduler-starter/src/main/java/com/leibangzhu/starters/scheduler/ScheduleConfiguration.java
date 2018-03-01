@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.scheduler;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.Trigger;
 import org.quartz.spi.JobFactory;
@@ -31,7 +31,7 @@ import java.util.Properties;
 @ConditionalOnProperty(name = "quartz.enabled")
 public class ScheduleConfiguration {
 
-    private static final Logger logger = QibeiLogger.create(ScheduleConfiguration.class);
+    private static final Logger logger = LeibangzhuLogger.create(ScheduleConfiguration.class);
 
     @Lazy
     @Autowired

@@ -1,6 +1,6 @@
 package com.leibangzhu.starters.sms;
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import com.leibangzhu.starters.http.IHttpBroker;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  */
 public abstract class BaseSmsClient implements ISmsClient, DisposableBean {
 
-    private static final Logger logger = QibeiLogger.create(BaseSmsClient.class);
+    private static final Logger logger = LeibangzhuLogger.create(BaseSmsClient.class);
 
     @Autowired
     protected IHttpBroker httpBroker;

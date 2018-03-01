@@ -1,7 +1,7 @@
 package com.leibangzhu.starters.influxdb;
 
 
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import org.apache.commons.lang3.StringUtils;
 import org.influxdb.InfluxDB;
 import org.influxdb.InfluxDBFactory;
@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "influxdb")
 public class InfluxDBAutoConfiguration {
 
-    private static final Logger logger = QibeiLogger.create(InfluxDBAutoConfiguration.class);
+    private static final Logger logger = LeibangzhuLogger.create(InfluxDBAutoConfiguration.class);
 
     private String url;
     private String username;

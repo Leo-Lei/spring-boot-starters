@@ -4,7 +4,7 @@ import com.alibaba.rocketmq.client.exception.MQClientException;
 import com.aliyun.openservices.ons.api.Action;
 import com.aliyun.openservices.ons.api.Consumer;
 import com.aliyun.openservices.ons.api.ONSFactory;
-import com.leibangzhu.starters.common.util.QibeiLogger;
+import com.leibangzhu.starters.common.util.LeibangzhuLogger;
 import com.leibangzhu.starters.mq.IMsgHandler;
 import com.leibangzhu.starters.mq.Message;
 import com.leibangzhu.starters.mq.MessageBuilder;
@@ -18,7 +18,7 @@ import java.util.Properties;
 
 public class OnsConsumer implements IOnsConsumer, InitializingBean, DisposableBean {
 
-    private static final Logger logger = QibeiLogger.create(OnsConsumer.class);
+    private static final Logger logger = LeibangzhuLogger.create(OnsConsumer.class);
 
     private Consumer consumer;
 

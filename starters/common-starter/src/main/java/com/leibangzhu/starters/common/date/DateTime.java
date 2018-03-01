@@ -1,4 +1,4 @@
-package com.leibangzhu.starters.common.data;
+package com.leibangzhu.starters.common.date;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Author: lili
@@ -174,5 +175,32 @@ public final class DateTime {
     public DateTime clone(){
 
         return new DateTime(calendar.getTime());
+    }
+
+    public long getPeroidTo(DateTime dateTime, TimeUnits unit){
+
+        long microSeconds = dateTime.toDate().getTime() - this.toDate().getTime();
+
+        if(microSeconds < 0){
+
+            microSeconds *= -1;
+        }
+
+        switch (unit){
+
+            case DAYS:
+
+                return TimeUnit.MILLISECONDS.toDays(microSeconds);
+            case HOURS:
+
+                return TimeUnit.MILLISECONDS.toHours(microSeconds);
+            case MINUTES:
+
+                return TimeUnit.MILLISECONDS.toMinutes(microSeconds);
+            case SECONDS:
+            default:
+
+                return TimeUnit.MILLISECONDS.toSeconds(microSeconds);
+        }
     }
 }

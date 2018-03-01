@@ -12,6 +12,8 @@ public interface IRedisClient {
 
     void set(String key, Object value);
 
+    void set(String key, Object value,int time,TimeUnit unit);
+
     void sadd(String key, Object value);
 
     <T> T spop(String key, Class<T> clazz);
